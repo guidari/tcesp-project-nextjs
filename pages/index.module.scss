@@ -1,0 +1,9 @@
+.main {
+  width: 80%;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
