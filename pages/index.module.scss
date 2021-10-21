@@ -7,3 +7,9 @@
   grid-gap: 2rem;
   margin-top: 2rem;
 }
+
+@media (max-width: 720px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
