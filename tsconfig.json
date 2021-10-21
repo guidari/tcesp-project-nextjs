@@ -14,6 +14,18 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/Footer/footer.jsx",
+    "components/Header/header.jsx",
+    "components/Layout/layout.jsx",
+    "src/pages/api/auth/[...nextauth].js",
+    "src/pages/_app.jsx",
+    "src/pages/_document.jsx",
+    "src/pages/index.jsx",
+    "components/SearchBox/searchBox.jsx"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,12 +1,9 @@
 import styles from "./searchBox.module.scss";
-import { useTable } from "react-table";
-import React from "react";
+import Link from "next/link";
+import Router from "next/router";
 
-// interface ICity {
-//   municipio_extenso: string;
-// }
-
-export default function SearchBox() {
+export default function SearchBox({ data }) {
+  // console.log(data);
   // Fetching cities names and insert them to the select
   fetch(`https://transparencia.tce.sp.gov.br/api/json/municipios`)
     .then((res) => res.json())
@@ -25,50 +22,32 @@ export default function SearchBox() {
       console.log("catch error", err);
     });
 
-  const data = React.useMemo(
-    () => [
-      {
-        col1: "Hello",
-        col2: "World",
-      },
-      {
-        col1: "react-table",
-        col2: "rocks",
-      },
-      {
-        col1: "whatever",
-        col2: "you want",
-      },
-    ],
-    []
-  );
+  function searchMunicipio() {
+    const name = document.querySelector("#cityName").value;
+    const year = document.querySelector("#cityYear").value;
+    const month = document.querySelector("#cityMonth").value;
+    const info = document.querySelector("#cityInfo").value;
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Header 1",
-        accessor: "col1", // accessor is the "key" in the data
+    Router.push({
+      pathname: "/municipio/municipio",
+      query: {
+        name: name,
+        year: year,
+        month: month,
+        info: info,
       },
-      {
-        Header: "Header 2",
-        accessor: "col2",
-      },
-    ],
-    []
-  );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    });
+  }
 
   return (
     <>
       <h1>Verificar Município</h1>
 
       <div className={styles.searchBox}>
-        <select id="cityName" name="selectCities"></select>
+        <select id="cityName" name="cityName"></select>
 
-        <select name="cityInfo" id="cityInfo">
-          <option value="" disabled selected>
+        <select name="cityYear" id="cityYear">
+          <option value="" disabled defaultValue>
             Selecione o ano
           </option>
           <option value="2020">2020</option>
@@ -76,7 +55,7 @@ export default function SearchBox() {
         </select>
 
         <select name="cityMonth" id="cityMonth">
-          <option value="" disabled selected>
+          <option value="" disabled defaultValue>
             Selecione um mês
           </option>
           <option value="01">Janeiro</option>
@@ -94,60 +73,26 @@ export default function SearchBox() {
         </select>
 
         <select name="cityInfo" id="cityInfo">
-          <option value="" disabled selected>
+          <option value="" disabled defaultValue>
             Selecione um tipo
           </option>
           <option value="despesas">Despesas</option>
           <option value="receitas">Receitas</option>
         </select>
 
-        <button>Pesquisar</button>
+        <button onClick={() => searchMunicipio()}>Pesquisar</button>
       </div>
-
-      <table {...getTableProps()} style={{ border: "solid 1px blue" }}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{
-                    borderBottom: "solid 3px red",
-                    background: "aliceblue",
-                    color: "black",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: "10px",
-                        border: "solid 1px gray",
-                        background: "papayawhip",
-                      }}
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
     </>
   );
 }
+
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     `https://transparencia.tce.sp.gov.br/api/json/municipios`
+//   );
+//   const data = await res.json();
+
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   };
+// }
