@@ -1,0 +1,19 @@
+.content {
+  width: 80%;
+  margin: 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  grid-gap: 2rem;
+  margin-top: 2rem;
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  img {
+    width: 40rem;
+    margin-top: 4rem;
+  }
+}

@@ -1,22 +1,20 @@
 import styles from "./searchBox.module.scss";
-import Link from "next/link";
 import Router from "next/router";
 
-export default function SearchBox({ data }) {
-  // console.log(data);
+export default function SearchBox() {
   // Fetching cities names and insert them to the select
   fetch(`https://transparencia.tce.sp.gov.br/api/json/municipios`)
     .then((res) => res.json())
     .then((data) => {
-      let modalBody = "";
+      let selectCity = "";
       let i = 0;
       data.forEach(function (city) {
         i++;
-        modalBody += `
+        selectCity += `
         <option value='${city.municipio_extenso}'>${city.municipio_extenso}</option>
       `;
       });
-      document.querySelector("#cityName").innerHTML = modalBody;
+      document.querySelector("#cityName").innerHTML = selectCity;
     })
     .catch((err) => {
       console.log("catch error", err);

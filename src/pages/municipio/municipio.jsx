@@ -4,6 +4,7 @@ import styles from "./municipio.module.scss";
 import Layout from "../../../components/Layout/layout";
 import MunicipioData from "../../../components/MunicipioData/municipioData";
 import { useRouter } from "next/router";
+import NotAuthorized from "../../../components/NotAuthorized/notAuthorized";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -29,9 +30,7 @@ export default function Home() {
   if (!session) {
     return (
       <Layout>
-        <main className={styles.main}>
-          <p>Faça login para ver a página</p>
-        </main>
+        <NotAuthorized />
       </Layout>
     );
   }

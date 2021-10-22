@@ -3,6 +3,8 @@ import styles from "./index.module.scss";
 
 import Layout from "../../components/Layout/layout";
 import SearchBox from "../../components/SearchBox/searchBox";
+import NotAuthorized from "../../components/NotAuthorized/notAuthorized";
+import UrlValidator from "../../components/UrlValidator/urlValidator";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -14,9 +16,7 @@ export default function Home() {
   if (!session) {
     return (
       <Layout>
-        <main className={styles.main}>
-          <p>Faça login para ver a página</p>
-        </main>
+        <NotAuthorized />
       </Layout>
     );
   }
@@ -27,6 +27,7 @@ export default function Home() {
       <main className={styles.main}>
         <section>
           <SearchBox />
+          <UrlValidator />
         </section>
 
         <section>
