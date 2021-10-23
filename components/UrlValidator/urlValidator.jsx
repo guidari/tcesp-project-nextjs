@@ -3,8 +3,11 @@ import styles from "./urlValidator.module.scss";
 export default function UrlValidator() {
   function create() {}
   fetch(
-    `http://cors-anywhere.herokuapp.com/http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`
+    // `http://cors-anywhere.herokuapp.com/http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`
+    `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`
+    // `http://localhost:3333/municipios`
   )
+    .then((res) => res.json())
     .then((data) => {
       console.log(data);
     })
@@ -20,15 +23,21 @@ export default function UrlValidator() {
       url,
     };
 
-    fetch(
-      `http://cors-anywhere.herokuapp.com/http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
-        body: JSON.stringify({ data }),
-      }
-    );
+    fetch(`http://localhost:3333/municipios`, {
+      // fetch(
+      //   `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`,
+      //   {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // mode: "no-cors",
+      body: JSON.stringify({ data }),
+    });
+
+    // var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
+    // var theUrl = "http://localhost:3333/municipios";
+    // xmlhttp.open("POST", theUrl);
+    // xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    // xmlhttp.send(JSON.stringify({ response: { data } }));
   }
 
   return (
