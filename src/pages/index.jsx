@@ -1,10 +1,10 @@
 import { useSession } from "next-auth/client";
 import styles from "./index.module.scss";
 
-import Layout from "../../components/Layout/layout";
-import SearchBox from "../../components/SearchBox/searchBox";
-import NotAuthorized from "../../components/NotAuthorized/notAuthorized";
-import UrlValidator from "../../components/UrlValidator/urlValidator";
+import Layout from "../components/Layout/layout";
+import SearchBox from "../components/SearchBox/searchBox";
+import NotAuthorized from "../components/NotAuthorized/notAuthorized";
+import UrlValidator from "../components/UrlValidator/urlValidator";
 
 export default function Home() {
   const [session, loading] = useSession();

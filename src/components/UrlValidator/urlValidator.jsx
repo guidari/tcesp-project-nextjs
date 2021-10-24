@@ -23,12 +23,10 @@ export default function UrlValidator() {
       url,
     };
 
+    // fetch(`http://cors-anywhere.herokuapp.com/http://localhost:3333/municipios`,{
     fetch(
-      `http://cors-anywhere.herokuapp.com/http://localhost:3333/municipios`,
+      `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`,
       {
-        // fetch(
-        //   `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`,
-        //   {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // mode: "no-cors",
