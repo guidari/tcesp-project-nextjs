@@ -1,36 +1,33 @@
 import styles from "./urlValidator.module.scss";
 
 export default function UrlValidator() {
-  function create() {}
-  fetch(
-    // `http://cors-anywhere.herokuapp.com/http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`
-    `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`
-    // `http://localhost:3333/municipios`
-  )
+  fetch(`https://transparencia.tce.sp.gov.br/api/json/municipios`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      let selectCity = "";
+      let i = 0;
+      data.forEach(function (city) {
+        i++;
+        selectCity += `
+      <option value='${city.municipio_extenso}'>${city.municipio_extenso}</option>
+    `;
+      });
+      document.querySelector("#municipio").innerHTML = selectCity;
     })
     .catch((err) => {
       console.log("catch error", err);
     });
+
   function checkMunicipio() {
     const nome = document.querySelector("#municipio").value;
     const url = document.querySelector("#url").value;
 
-    // fetch(`http://cors-anywhere.herokuapp.com/http://localhost:3333/municipios`,{
     fetch(`https://6174b13008834f0017c709d5.mockapi.io/api/v1/municipios`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // mode: "no-cors",
       body: JSON.stringify({ nome, url }),
     });
-
-    // var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
-    // var theUrl = "http://localhost:3333/municipios";
-    // xmlhttp.open("POST", theUrl);
-    // xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    // xmlhttp.send(JSON.stringify({ response: { data } }));
   }
 
   return (
@@ -38,7 +35,7 @@ export default function UrlValidator() {
       <h1>URLs</h1>
 
       <div className={styles.searchBox}>
-        <input id="municipio" type="text" placeholder="Município" />
+        <select id="municipio" name="municipio"></select>
         <input id="url" type="text" placeholder="URL" />
 
         <button onClick={() => checkMunicipio()}>Checar URL</button>
