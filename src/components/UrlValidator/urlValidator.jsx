@@ -18,21 +18,13 @@ export default function UrlValidator() {
     const nome = document.querySelector("#municipio").value;
     const url = document.querySelector("#url").value;
 
-    const data = {
-      nome,
-      url,
-    };
-
     // fetch(`http://cors-anywhere.herokuapp.com/http://localhost:3333/municipios`,{
-    fetch(
-      `http://tcesp-api.eba-ev685m5m.us-east-2.elasticbeanstalk.com/municipios`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // mode: "no-cors",
-        body: JSON.stringify({ data }),
-      }
-    );
+    fetch(`https://6174b13008834f0017c709d5.mockapi.io/api/v1/municipios`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // mode: "no-cors",
+      body: JSON.stringify({ nome, url }),
+    });
 
     // var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
     // var theUrl = "http://localhost:3333/municipios";
