@@ -5,6 +5,7 @@ import Layout from "../../components/Layout/layout";
 import MunicipioData from "../../components/MunicipioData/municipioData";
 import { useRouter } from "next/router";
 import NotAuthorized from "../../components/NotAuthorized/notAuthorized";
+import MMunicipioStatus from "../../components/MunicipioStatus/municipioStatus";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -40,7 +41,7 @@ export default function Home() {
     <Layout>
       <main className={styles.main}>
         <section>
-          <h1>Status</h1>
+          <MMunicipioStatus props={props} />
         </section>
 
         <section>
