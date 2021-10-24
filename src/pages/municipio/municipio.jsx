@@ -1,10 +1,10 @@
 import { useSession } from "next-auth/client";
 import styles from "./municipio.module.scss";
 
-import Layout from "../../../components/Layout/layout";
-import MunicipioData from "../../../components/MunicipioData/municipioData";
+import Layout from "../../components/Layout/layout";
+import MunicipioData from "../../components/MunicipioData/municipioData";
 import { useRouter } from "next/router";
-import NotAuthorized from "../../../components/NotAuthorized/notAuthorized";
+import NotAuthorized from "../../components/NotAuthorized/notAuthorized";
 
 export default function Home() {
   const [session, loading] = useSession();
