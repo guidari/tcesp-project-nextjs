@@ -5,6 +5,7 @@ import Layout from "../components/Layout/layout";
 import SearchBox from "../components/SearchBox/searchBox";
 import NotAuthorized from "../components/NotAuthorized/notAuthorized";
 import UrlValidator from "../components/UrlValidator/urlValidator";
+import UltimasConsultas from "../components/UltimasConsultas/ultimasConsultas";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -31,7 +32,7 @@ export default function Home() {
         </section>
 
         <section>
-          <h1>Últimas Consultas</h1>
+          <UltimasConsultas />
         </section>
       </main>
     </Layout>
