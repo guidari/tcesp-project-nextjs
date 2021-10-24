@@ -21,13 +21,19 @@ export default function UrlValidator() {
   function checkMunicipio() {
     const nome = document.querySelector("#municipio").value;
     const url = document.querySelector("#url").value;
+    const date = new Date();
+
+    if (!nome || !url) {
+      return alert("Preencha os campos para verificar a URL");
+    }
 
     fetch(`https://6174b13008834f0017c709d5.mockapi.io/api/v1/municipios`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // mode: "no-cors",
-      body: JSON.stringify({ nome, url }),
+      body: JSON.stringify({ nome, url, date }),
     });
+    alert("Verificando a URL, aguarde....");
   }
 
   return (
@@ -36,7 +42,7 @@ export default function UrlValidator() {
 
       <div className={styles.searchBox}>
         <select id="municipio" name="municipio"></select>
-        <input id="url" type="text" placeholder="URL" />
+        <input id="url" type="url" placeholder="URL" />
 
         <button onClick={() => checkMunicipio()}>Checar URL</button>
       </div>
