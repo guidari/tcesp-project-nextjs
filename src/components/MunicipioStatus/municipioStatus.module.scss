@@ -1,9 +1,12 @@
 .infoMunicipio {
   margin-top: 2rem;
+  max-width: 23rem;
+  overflow: hidden;
 
   h4 {
     color: var(--gray-700);
     margin: 0.7rem 0;
+    font-size: 1.1rem;
 
     span {
       color: var(--gray-300);

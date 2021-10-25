@@ -37,7 +37,10 @@ export default function MunicipioStatus({ props }) {
                 Município: <span> {municipio.nome}</span>
               </h4>
               <h4>
-                URL: <span> {municipio.url}</span>
+                URL:
+                <span>
+                  <a href={municipio.url}>{municipio.url}</a>
+                </span>
               </h4>
               <h4>
                 Disponibilidade dos dados:
