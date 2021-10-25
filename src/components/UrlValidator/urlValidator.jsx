@@ -68,8 +68,7 @@ export default function UrlValidator() {
         });
         alert("Verificando a URL, aguarde....");
 
-
-        //Router.push({ 
+        //Router.push({
         //  pathname: "/municipio/municipio",
         //  query: {
         //    name: data[0].nome,
@@ -98,26 +97,14 @@ export default function UrlValidator() {
           <option value="receitas">Receitas</option>
         </select>
 
-<<<<<<< HEAD
-  {
-    carregando ? (
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
+        {carregando ? (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        ) : (
+          <button onClick={() => checkMunicipio()}>Checar URL</button>
+        )}
       </div>
-    ) : (
-      <button onClick={() => checkMunicipio()}>Checar URL</button>
-    )
-  }
-=======
-        {
-          carregando ?
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div> :
-            <button onClick={() => checkMunicipio()}>Checar URL</button>
-        }
->>>>>>> integracao_python
-      </div >
     </>
   );
 }
