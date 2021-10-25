@@ -33,28 +33,23 @@ export default function MunicipioStatus({ props }) {
         {municipio ? (
           <div>
             <h4>
-              Município: <span> {municipio[0].nome}</span>
+              Município: <span> {municipio[0]?.nome}</span>
             </h4>
             <h4>
               URL:
               <span>
-                <a href={municipio[0].url}> {municipio[0].url}</a>
+                <a href={municipio[0]?.url}> {municipio[0]?.url}</a>
               </span>
             </h4>
             <h4>
               Disponibilidade dos dados:
-              <span> {municipio[0].status == 1 ? "🟢" : "🔴"}</span>
+              <span> {municipio[0]?.status == 1 ? "🟢" : "🔴"}</span>
             </h4>
             <h4>
               Permite download nos formatos:
-              <span> {municipio[0].tipo_extracao}</span>
+              <span> {municipio[0]?.tipo_extracao}</span>
             </h4>
           </div>
-        ) : null}
-        {!municipio || municipio.length === 0 ? (
-          <tr>
-            <td colSpan="6">Nenhuma consulta encontrada...</td>
-          </tr>
         ) : null}
       </div>
     </>
