@@ -26,7 +26,6 @@ export default function UltimasConsultas() {
           <tr>
             <th scope="col">Status</th>
             <th scope="col">Nome</th>
-            <th scope="col">Dado</th>
             <th scope="col">Consultado em</th>
           </tr>
         </thead>
@@ -36,8 +35,11 @@ export default function UltimasConsultas() {
               <tr key={index}>
                 <th scope="row">{dado.status == 1 ? "🟢" : "🔴"}</th>
                 <td>{dado.nome}</td>
-                <td>{dado.tipo_extracao}</td>
-                <td>{formataData(dado.created_at)}</td>
+                <td>
+                  {dado.created_at
+                    ? formataData(dado.created_at)
+                    : "25/10/2021"}
+                </td>
               </tr>
             );
           })}

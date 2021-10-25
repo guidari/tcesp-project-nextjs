@@ -38,7 +38,7 @@ export default function MunicipioStatus({ props }) {
             <h4>
               URL:
               <span>
-                <a href={municipio[0].url}>{municipio[0].url}</a>
+                <a href={municipio[0].url}> {municipio[0].url}</a>
               </span>
             </h4>
             <h4>
