@@ -6,26 +6,26 @@ import styles from "./municipio.module.scss";
 export default function MunicipioData({ props }) {
   const nameSpace = props.name.replaceAll(" ", "-");
   const filterName = nameSpace.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  let contador = 1
+  let contador = 1;
 
   const [dados, setDados] = useState();
   const [carregando, setCarregando] = useState();
 
   const fetchData = () => {
-    setCarregando(true)
+    setCarregando(true);
     fetch(
       `https://transparencia.tce.sp.gov.br/api/json/${props.info}/${filterName}/${props.year}/${props.month}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setCarregando(false)
-        setDados(data)
+        setCarregando(false);
+        setDados(data);
       });
-  }
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -35,19 +35,18 @@ export default function MunicipioData({ props }) {
           {props.month}/{props.year} - {props.info}
         </span>
       </h1>
-      <div className='row'>
-        <div className='col-sm-12 col-md-12'>
-          {
-            carregando ?
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div> : null
-          }
-          {
-            props.info == 'despesas' && !carregando ?
-              <TableDespesas dados={dados} info={props.info} /> :
-              <TableReceitas dados={dados} info={props.info} />
-          }
+      <div className="row">
+        <div className="col-sm-12 col-md-12">
+          {carregando ? (
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : null}
+          {props.info == "despesas" && !carregando ? (
+            <TableDespesas dados={dados} info={props.info} />
+          ) : (
+            <TableReceitas dados={dados} info={props.info} />
+          )}
         </div>
       </div>
     </div>

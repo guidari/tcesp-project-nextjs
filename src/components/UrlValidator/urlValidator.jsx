@@ -26,23 +26,20 @@ export default function UrlValidator() {
   const getPython = (url) => {
     setCarregando(true);
     //console.log(url);
-    fetch('http://localhost:8080/?url=' + url).then((res) => {
-      res.json;
-    }).then((data) => {
-
-      setCarregando(false);
-      return data;
-
-    }).finally(() => {
-
-      setCarregando(false);
-
-    });
-  }
-
+    fetch("http://localhost:8080/?url=" + url)
+      .then((res) => {
+        res.json;
+      })
+      .then((data) => {
+        setCarregando(false);
+        return data;
+      })
+      .finally(() => {
+        setCarregando(false);
+      });
+  };
 
   function checkMunicipio() {
-
     const nome = document.querySelector("#municipio").value;
     const nameSpace = nome.replaceAll(" ", "-");
     const filterName = nameSpace
@@ -59,8 +56,7 @@ export default function UrlValidator() {
         const dataPython = getPython(data[0].url);
         console.log(dataPython);
 
-
-        //Router.push({ 
+        //Router.push({
         //  pathname: "/municipio/municipio",
         //  query: {
         //    name: data[0].nome,
@@ -68,7 +64,6 @@ export default function UrlValidator() {
         //    tipo_url: data[0].tipo_url
         //  },
         //});
-
       })
       .catch((err) => {
         console.log("catch error", err);
@@ -90,13 +85,13 @@ export default function UrlValidator() {
           <option value="receitas">Receitas</option>
         </select>
 
-        {
-          carregando ?
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div> :
-            <button onClick={() => checkMunicipio()}>Checar URL</button>
-        }
+        {carregando ? (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        ) : (
+          <button onClick={() => checkMunicipio()}>Checar URL</button>
+        )}
       </div>
     </>
   );
