@@ -32,16 +32,11 @@ let runPy = function (urlPage) {
 app.get('/', async (req, res) => {
     const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
     params = new URLSearchParams(url.search);
-    var urlPage = params.get('test');
-    console.log(urlPage);
+    var urlPage = params.get('url');
+    //console.log(urlPage);
     runPy(urlPage).then(function (fromRunpy) {
         res.json({
-            erro: false,
-            datahome: {
-                text_one: fromRunpy.toString(),
-                text_two: 'fromRunpy.toString()',
-                trhw: params.get('test'),
-            }
+            dados: fromRunpy.toString(),
         });
     });
 

@@ -3,6 +3,9 @@ import styles from "./urlValidator.module.scss";
 import Router from "next/router";
 
 export default function UrlValidator() {
+  const [dados, setDados] = useState();
+  const [carregando, setCarregando] = useState();
+
   fetch(`https://transparencia.tce.sp.gov.br/api/json/municipios`)
     .then((res) => res.json())
     .then((data) => {
@@ -20,22 +23,26 @@ export default function UrlValidator() {
       console.log("catch error", err);
     });
 
+  const getPython = (url) => {
+    setCarregando(true);
+    //console.log(url);
+    fetch('http://localhost:8080/?url=' + url).then((res) => {
+      res.json;
+    }).then((data) => {
+
+      setCarregando(false);
+      return data;
+
+    }).finally(() => {
+
+      setCarregando(false);
+
+    });
+  }
+
+
   function checkMunicipio() {
-    // const nome = document.querySelector("#municipio").value;
-    // const tipo_url = document.querySelector("#tipo_url").value;
-    // const date = new Date();
 
-    // if (!nome || !tipo_url) {
-    //   return alert("Preencha os campos para verificar a URL");
-    // }
-
-    // fetch(`https://6174b13008834f0017c709d5.mockapi.io/api/v1/municipios`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   // mode: "no-cors",
-    //   body: JSON.stringify({ nome, tipo_url, date }),
-    // });
-    // alert("Verificando a URL, aguarde....");
     const nome = document.querySelector("#municipio").value;
     const nameSpace = nome.replaceAll(" ", "-");
     const filterName = nameSpace
@@ -49,19 +56,18 @@ export default function UrlValidator() {
       .then((data) => {
         console.log(data);
 
+        const dataPython = getPython(data[0].url);
+        console.log(dataPython);
 
 
-
-        alert(`Municipio ${data[0].nome} encontrado`);
-
-        Router.push({
-          pathname: "/testeUrl/testeUrl",
-          query: {
-            name: data[0].nome,
-            url: data[0].url,
-            tipo_url: data[0].tipo_url
-          },
-        });
+        //Router.push({ 
+        //  pathname: "/municipio/municipio",
+        //  query: {
+        //    name: data[0].nome,
+        //    url: data[0].url,
+        //    tipo_url: data[0].tipo_url
+        //  },
+        //});
 
       })
       .catch((err) => {
@@ -84,7 +90,13 @@ export default function UrlValidator() {
           <option value="receitas">Receitas</option>
         </select>
 
-        <button onClick={() => checkMunicipio()}>Checar URL</button>
+        {
+          carregando ?
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div> :
+            <button onClick={() => checkMunicipio()}>Checar URL</button>
+        }
       </div>
     </>
   );

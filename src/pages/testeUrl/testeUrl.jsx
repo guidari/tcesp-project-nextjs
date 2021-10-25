@@ -4,13 +4,26 @@ import styles from "./testeUrl.module.scss";
 import Layout from "../../components/Layout/layout";
 import { useRouter } from "next/router";
 import NotAuthorized from "../../components/NotAuthorized/notAuthorized";
+import { useEffect, useState } from "react";
 
 
 
 
-function Home() {
+
+export default function Home() {
   const [session, loading] = useSession();
   const router = useRouter();
+  const [dados, setDados] = useState();
+
+
+  const getPython = () => {
+    fetch('http://localhost:8080/?url=' + props.name).then((res) => {
+      res.json;
+    }).then((data) => {
+      setDados(data);
+    });
+  }
+
 
   const {
     query: { name, url, tipo_url },
@@ -22,8 +35,10 @@ function Home() {
     tipo_url
   };
 
-  console.log(props.name);
-  pega(props);
+  useEffect(() => {
+    getPython();
+  }, [])
+
 
 
   // When rendering client side don't display anything until loading is complete
@@ -46,16 +61,5 @@ function Home() {
   );
 }
 
-async function pega(props) {
-
-  //console.log(props);
-
-  const response = await fetch('http://localhost:8080/?q=passar&test=' + props.name);
-  const data = await response.json();
-  console.log(data.datahome.text_one)
-
-  return { props: { data } };
-}
 
 
-export default Home;
