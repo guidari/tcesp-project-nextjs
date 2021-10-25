@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./urlValidator.module.scss";
+import Router from "next/router";
 
 export default function UrlValidator() {
   fetch(`https://transparencia.tce.sp.gov.br/api/json/municipios`)
@@ -47,7 +48,21 @@ export default function UrlValidator() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
+
+
+
         alert(`Municipio ${data[0].nome} encontrado`);
+
+        Router.push({
+          pathname: "/testeUrl/testeUrl",
+          query: {
+            name: data[0].nome,
+            url: data[0].url,
+            tipo_url: data[0].tipo_url
+          },
+        });
+
       })
       .catch((err) => {
         console.log("catch error", err);
