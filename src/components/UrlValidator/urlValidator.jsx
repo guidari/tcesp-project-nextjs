@@ -56,7 +56,20 @@ export default function UrlValidator() {
         const dataPython = getPython(data[0].url);
         console.log(dataPython);
 
-        //Router.push({
+        const tipo_extracao = dataPython;
+
+        const date = new Date();
+
+        fetch("https://6174b13008834f0017c709d5.mockapi.io/api/v1/municipios", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // mode: "no-cors",
+          body: JSON.stringify({ nome, tipo_extracao, date }),
+        });
+        alert("Verificando a URL, aguarde....");
+
+
+        //Router.push({ 
         //  pathname: "/municipio/municipio",
         //  query: {
         //    name: data[0].nome,
@@ -85,14 +98,26 @@ export default function UrlValidator() {
           <option value="receitas">Receitas</option>
         </select>
 
-        {carregando ? (
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        ) : (
-          <button onClick={() => checkMunicipio()}>Checar URL</button>
-        )}
+<<<<<<< HEAD
+  {
+    carregando ? (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
+    ) : (
+      <button onClick={() => checkMunicipio()}>Checar URL</button>
+    )
+  }
+=======
+        {
+          carregando ?
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div> :
+            <button onClick={() => checkMunicipio()}>Checar URL</button>
+        }
+>>>>>>> integracao_python
+      </div >
     </>
   );
 }
